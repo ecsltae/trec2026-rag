@@ -1,0 +1,13 @@
+# not distributed: corpus text, organisers' score files, local models and environments
+data/
+eval/RAGDoll/
+logs/
+.env.local
+.venv/
+__pycache__/
+*.pyc
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out

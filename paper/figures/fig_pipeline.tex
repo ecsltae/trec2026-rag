@@ -1,0 +1,74 @@
+%% Figure 1: the pipeline, drawn after Figure 1 of main_knafou_ntcir.pdf (grey group panels, white
+%% nodes with a bold title and an italic gloss, double borders on the two rules that decide what is
+%% submitted, dashed arrows for feedback and the variant). All text is \normalsize, 9 pt in acmart
+%% sigconf, the notebook minimum; the picture is drawn at text width (17.8 cm: five 3.1 cm columns
+%% and four 0.57 cm gaps) and is not scaled. Glosses repeat figures from the text.
+%% Needs tikz with the arrows.meta and fit libraries.
+\definecolor{pipeink}{RGB}{52,64,80}
+\begin{tikzpicture}[
+  font=\normalsize,
+  >={Stealth[length=4.5pt,width=4pt]},
+  nohyph/.style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  panel/.style={rounded corners=4pt, fill=black!4, draw=black!20},
+  box/.style={rounded corners=2pt, draw=pipeink, fill=white, line width=0.6pt, align=center,
+              minimum height=1.85cm, text width=2.92cm, inner sep=2.5pt, nohyph},
+  gate/.style={box, double=white, double distance=1.1pt, line width=0.5pt},
+  variant/.style={box, dashed},
+  arr/.style={->, draw=pipeink, line width=0.6pt},
+  back/.style={->, draw=pipeink, line width=0.6pt, dashed},
+  lab/.style={font=\normalsize\itshape, text=black!62, align=left, nohyph},
+  ptitle/.style={font=\normalsize\bfseries, anchor=north west},
+]
+\providecommand{\gl}[1]{\\[1pt]{\itshape #1}}
+
+% ---- panels (drawn first, so everything sits on them)
+\draw[panel] (0,0.6) rectangle (14.3,-4.55);
+\draw[panel] (3.5,-5.35) rectangle (14.3,-8.85);
+\node[ptitle] at (3.62,0.52) {Retrieval};
+\node[lab, anchor=north west] at (3.62,0.12) {offline after pooling};
+\node[ptitle] at (3.62,-5.43) {Generation};
+
+% ---- retrieval
+\node[font=\normalsize\itshape] (topic) at (1.55,1.2) {Topic};
+\node[box] (plan) at (1.55,-2.35) {\textbf{Search plan}\gl{4--6 facets and\\ a keyword query}};
+\node[box] (pool) at (5.22,-2.35) {\textbf{Pooling}\gl{12 BM25 searches,\\ $\approx$1{,}900 documents}};
+
+\draw[draw=pipeink, fill=white, rounded corners=2pt, line width=0.4pt] (8.89+0.12,-3.45+0.12) ++(-1.55,-0.925) rectangle ++(3.1,1.85);
+\draw[draw=pipeink, fill=white, rounded corners=2pt, line width=0.4pt] (8.89+0.06,-3.45+0.06) ++(-1.55,-0.925) rectangle ++(3.1,1.85);
+\node[box] (wq) at (8.89,-1.25) {\textbf{Whole topic}\gl{BM25 top 200,\\ reranked by MiniLM}};
+\node[box] (fac) at (8.89,-3.45) {\textbf{Facet rankings}\gl{bge top 150 per\\ query; keep 100}};
+\node[draw=pipeink, dashed, rounded corners=3pt, line width=0.5pt, inner sep=4pt, fit=(wq)(fac)] (rerank) {};
+\node[lab, anchor=south] at (rerank.north) {reranking};
+
+\node[box] (fuse) at (12.56,-1.25) {\textbf{Anchor-first fusion}\gl{whole topic first,\\ facets after}};
+\node[gate] (depth) at (12.56,-3.45) {\textbf{Depth rule}\gl{keeps scores $\geq$ the\\ weakest cited one}};
+\node[box] (deep) at (16.2,-1.25) {\textbf{Deep rankings}\gl{anchor-first order,\\ not scored}};
+\node[box] (scored) at (16.2,-3.45) {\textbf{Scored ranking}\gl{9 in 10 documents\\ from facets}};
+
+\draw[arr] (topic) -- (plan);
+\draw[arr] (plan) -- (pool);
+\draw[arr] (pool) -- (rerank.west |- pool);
+\draw[arr] (wq) -- (fuse);
+\draw[arr] (fac) -- (depth);
+\draw[draw=pipeink, line width=0.6pt] (10.72,-1.25) -- (10.72,-3.45);
+\fill[pipeink] (10.72,-1.25) circle (1.4pt) (10.72,-3.45) circle (1.4pt);
+\draw[arr] (fuse) -- (deep);
+\draw[arr] (depth) -- (scored);
+
+% ---- probe variant
+\node[variant] (probe) at (1.55,-6.75) {\textbf{Probe-guided plan}\gl{from an answer\\ drafted from memory}};
+\draw[back] (probe) -- node[lab, right, pos=0.24, text width=1.75cm] {variant: plan from the draft} (plan);
+
+% ---- generation
+\node[box] (ctx) at (5.22,-6.75) {\textbf{Context}\gl{whole topic top 10,\\ facets top 6 each}};
+\node[box] (syn) at (8.89,-6.75) {\textbf{Synthesis}\gl{one claim per\\ sentence, cited}};
+\node[gate] (gates) at (12.56,-6.75) {\textbf{Citation checks}\gl{uncited sentences\\ dropped}};
+\node[box] (ans) at (16.2,-6.75) {\textbf{Answer}\gl{bp\_agentic\_v2}};
+
+\draw[arr] (rerank.south) -- ++(0,-0.55) -| node[lab, pos=0.25, above] {top documents} ([xshift=6mm]ctx.north);
+\draw[arr] (ctx) -- (syn);
+\draw[arr] (syn) -- (gates);
+\draw[arr] (gates) -- (ans);
+\draw[back] ([xshift=7mm]syn.south) -- ++(0,-0.42) -| node[lab, pos=0.25, below, align=center] {review: one repair round for uncovered facets} ([xshift=-7mm]syn.south);
+\draw[back] (gates.north) -- node[lab, left, pos=0.5] {cited documents} (depth.south);
+\end{tikzpicture}

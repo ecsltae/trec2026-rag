@@ -1,0 +1,983 @@
+{
+  "judge_model": "qwen3:32b",
+  "runs": {
+    "bp_agentic_v2_dev22_grounded": {
+      "n_topics": 22,
+      "strict_vital_score": 0.3446485593935013,
+      "strict_all_score": 0.3045985351663627,
+      "median_words": 223.0,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.24444444444444444,
+          "strict_all_score": 0.25,
+          "vital_score": 0.4,
+          "all_score": 0.359375,
+          "words": 247
+        },
+        "144": {
+          "strict_vital_score": 0.6060606060606061,
+          "strict_all_score": 0.5,
+          "vital_score": 0.6212121212121212,
+          "all_score": 0.5113636363636364,
+          "words": 235
+        },
+        "161": {
+          "strict_vital_score": 0.4791666666666667,
+          "strict_all_score": 0.35714285714285715,
+          "vital_score": 0.53125,
+          "all_score": 0.39285714285714285,
+          "words": 250
+        },
+        "200": {
+          "strict_vital_score": 0.4918032786885246,
+          "strict_all_score": 0.38636363636363635,
+          "vital_score": 0.5655737704918032,
+          "all_score": 0.4431818181818182,
+          "words": 248
+        },
+        "213": {
+          "strict_vital_score": 0.48148148148148145,
+          "strict_all_score": 0.44,
+          "vital_score": 0.5925925925925926,
+          "all_score": 0.51,
+          "words": 319
+        },
+        "219": {
+          "strict_vital_score": 0.26666666666666666,
+          "strict_all_score": 0.3,
+          "vital_score": 0.31666666666666665,
+          "all_score": 0.35,
+          "words": 140
+        },
+        "224": {
+          "strict_vital_score": 0.375,
+          "strict_all_score": 0.3333333333333333,
+          "vital_score": 0.3984375,
+          "all_score": 0.3782051282051282,
+          "words": 228
+        },
+        "225": {
+          "strict_vital_score": 0.14705882352941177,
+          "strict_all_score": 0.20454545454545456,
+          "vital_score": 0.16176470588235295,
+          "all_score": 0.2159090909090909,
+          "words": 170
+        },
+        "233": {
+          "strict_vital_score": 0.5333333333333333,
+          "strict_all_score": 0.4528301886792453,
+          "vital_score": 0.5666666666666667,
+          "all_score": 0.5094339622641509,
+          "words": 282
+        },
+        "273": {
+          "strict_vital_score": 0.34782608695652173,
+          "strict_all_score": 0.3064516129032258,
+          "vital_score": 0.40217391304347827,
+          "all_score": 0.3548387096774194,
+          "words": 206
+        },
+        "300": {
+          "strict_vital_score": 0.25806451612903225,
+          "strict_all_score": 0.1702127659574468,
+          "vital_score": 0.2903225806451613,
+          "all_score": 0.23404255319148937,
+          "words": 243
+        },
+        "31": {
+          "strict_vital_score": 0.375,
+          "strict_all_score": 0.4117647058823529,
+          "vital_score": 0.3958333333333333,
+          "all_score": 0.4264705882352941,
+          "words": 160
+        },
+        "37": {
+          "strict_vital_score": 0.391304347826087,
+          "strict_all_score": 0.3448275862068966,
+          "vital_score": 0.391304347826087,
+          "all_score": 0.3620689655172414,
+          "words": 207
+        },
+        "407": {
+          "strict_vital_score": 0.16666666666666666,
+          "strict_all_score": 0.1346153846153846,
+          "vital_score": 0.21428571428571427,
+          "all_score": 0.17307692307692307,
+          "words": 152
+        },
+        "477": {
+          "strict_vital_score": 0.3783783783783784,
+          "strict_all_score": 0.3469387755102041,
+          "vital_score": 0.4189189189189189,
+          "all_score": 0.3979591836734694,
+          "words": 354
+        },
+        "499": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.4153846153846154,
+          "vital_score": 0.5,
+          "all_score": 0.4153846153846154,
+          "words": 154
+        },
+        "515": {
+          "strict_vital_score": 0.21875,
+          "strict_all_score": 0.17073170731707318,
+          "vital_score": 0.3125,
+          "all_score": 0.24390243902439024,
+          "words": 218
+        },
+        "58": {
+          "strict_vital_score": 0.45714285714285713,
+          "strict_all_score": 0.4358974358974359,
+          "vital_score": 0.4857142857142857,
+          "all_score": 0.46153846153846156,
+          "words": 189
+        },
+        "707": {
+          "strict_vital_score": 0.14492753623188406,
+          "strict_all_score": 0.11494252873563218,
+          "vital_score": 0.15217391304347827,
+          "all_score": 0.14367816091954022,
+          "words": 299
+        },
+        "72": {
+          "strict_vital_score": 0.1388888888888889,
+          "strict_all_score": 0.13333333333333333,
+          "vital_score": 0.1597222222222222,
+          "all_score": 0.15,
+          "words": 169
+        },
+        "84": {
+          "strict_vital_score": 0.14634146341463414,
+          "strict_all_score": 0.18518518518518517,
+          "vital_score": 0.24390243902439024,
+          "all_score": 0.25925925925925924,
+          "words": 194
+        },
+        "897": {
+          "strict_vital_score": 0.4339622641509434,
+          "strict_all_score": 0.30666666666666664,
+          "vital_score": 0.4528301886792453,
+          "all_score": 0.3466666666666667,
+          "words": 237
+        }
+      }
+    },
+    "bp_agentic_v2_dev22_supported": {
+      "n_topics": 22,
+      "strict_vital_score": 0.3928607804111094,
+      "strict_all_score": 0.3560274245151649,
+      "median_words": 268.5,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.26666666666666666,
+          "strict_all_score": 0.265625,
+          "vital_score": 0.37777777777777777,
+          "all_score": 0.34375,
+          "words": 271
+        },
+        "144": {
+          "strict_vital_score": 0.6363636363636364,
+          "strict_all_score": 0.6363636363636364,
+          "vital_score": 0.6515151515151515,
+          "all_score": 0.6477272727272727,
+          "words": 331
+        },
+        "161": {
+          "strict_vital_score": 0.5208333333333334,
+          "strict_all_score": 0.42857142857142855,
+          "vital_score": 0.53125,
+          "all_score": 0.4357142857142857,
+          "words": 346
+        },
+        "200": {
+          "strict_vital_score": 0.5081967213114754,
+          "strict_all_score": 0.38636363636363635,
+          "vital_score": 0.5737704918032787,
+          "all_score": 0.44886363636363635,
+          "words": 282
+        },
+        "213": {
+          "strict_vital_score": 0.5555555555555556,
+          "strict_all_score": 0.52,
+          "vital_score": 0.5925925925925926,
+          "all_score": 0.55,
+          "words": 367
+        },
+        "219": {
+          "strict_vital_score": 0.4,
+          "strict_all_score": 0.45,
+          "vital_score": 0.43333333333333335,
+          "all_score": 0.5,
+          "words": 246
+        },
+        "224": {
+          "strict_vital_score": 0.375,
+          "strict_all_score": 0.3333333333333333,
+          "vital_score": 0.3984375,
+          "all_score": 0.3782051282051282,
+          "words": 228
+        },
+        "225": {
+          "strict_vital_score": 0.2647058823529412,
+          "strict_all_score": 0.29545454545454547,
+          "vital_score": 0.27941176470588236,
+          "all_score": 0.3181818181818182,
+          "words": 285
+        },
+        "233": {
+          "strict_vital_score": 0.5333333333333333,
+          "strict_all_score": 0.4528301886792453,
+          "vital_score": 0.5666666666666667,
+          "all_score": 0.5094339622641509,
+          "words": 282
+        },
+        "273": {
+          "strict_vital_score": 0.45652173913043476,
+          "strict_all_score": 0.4032258064516129,
+          "vital_score": 0.5108695652173914,
+          "all_score": 0.4435483870967742,
+          "words": 315
+        },
+        "300": {
+          "strict_vital_score": 0.25806451612903225,
+          "strict_all_score": 0.1702127659574468,
+          "vital_score": 0.2903225806451613,
+          "all_score": 0.23404255319148937,
+          "words": 243
+        },
+        "31": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.5,
+          "vital_score": 0.5208333333333334,
+          "all_score": 0.5147058823529411,
+          "words": 208
+        },
+        "37": {
+          "strict_vital_score": 0.391304347826087,
+          "strict_all_score": 0.3448275862068966,
+          "vital_score": 0.391304347826087,
+          "all_score": 0.3620689655172414,
+          "words": 207
+        },
+        "407": {
+          "strict_vital_score": 0.16666666666666666,
+          "strict_all_score": 0.15384615384615385,
+          "vital_score": 0.2261904761904762,
+          "all_score": 0.20192307692307693,
+          "words": 266
+        },
+        "477": {
+          "strict_vital_score": 0.4864864864864865,
+          "strict_all_score": 0.42857142857142855,
+          "vital_score": 0.5,
+          "all_score": 0.45918367346938777,
+          "words": 382
+        },
+        "499": {
+          "strict_vital_score": 0.6041666666666666,
+          "strict_all_score": 0.5538461538461539,
+          "vital_score": 0.6458333333333334,
+          "all_score": 0.6076923076923076,
+          "words": 231
+        },
+        "515": {
+          "strict_vital_score": 0.3125,
+          "strict_all_score": 0.24390243902439024,
+          "vital_score": 0.375,
+          "all_score": 0.2926829268292683,
+          "words": 238
+        },
+        "58": {
+          "strict_vital_score": 0.45714285714285713,
+          "strict_all_score": 0.4358974358974359,
+          "vital_score": 0.4857142857142857,
+          "all_score": 0.46153846153846156,
+          "words": 219
+        },
+        "707": {
+          "strict_vital_score": 0.11594202898550725,
+          "strict_all_score": 0.09195402298850575,
+          "vital_score": 0.12318840579710146,
+          "all_score": 0.11494252873563218,
+          "words": 345
+        },
+        "72": {
+          "strict_vital_score": 0.16666666666666666,
+          "strict_all_score": 0.15555555555555556,
+          "vital_score": 0.19444444444444445,
+          "all_score": 0.18888888888888888,
+          "words": 228
+        },
+        "84": {
+          "strict_vital_score": 0.1951219512195122,
+          "strict_all_score": 0.2222222222222222,
+          "vital_score": 0.2804878048780488,
+          "all_score": 0.2962962962962963,
+          "words": 216
+        },
+        "897": {
+          "strict_vital_score": 0.4716981132075472,
+          "strict_all_score": 0.36,
+          "vital_score": 0.5094339622641509,
+          "all_score": 0.4,
+          "words": 278
+        }
+      }
+    },
+    "bp_v2_evidence_dev22_grounded": {
+      "n_topics": 22,
+      "strict_vital_score": 0.4143090723319196,
+      "strict_all_score": 0.3818088929475678,
+      "median_words": 402.5,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.4888888888888889,
+          "strict_all_score": 0.46875,
+          "vital_score": 0.5222222222222223,
+          "all_score": 0.4921875,
+          "words": 574
+        },
+        "144": {
+          "strict_vital_score": 0.5454545454545454,
+          "strict_all_score": 0.5681818181818182,
+          "vital_score": 0.6363636363636364,
+          "all_score": 0.6363636363636364,
+          "words": 606
+        },
+        "161": {
+          "strict_vital_score": 0.5416666666666666,
+          "strict_all_score": 0.44285714285714284,
+          "vital_score": 0.5520833333333334,
+          "all_score": 0.4642857142857143,
+          "words": 666
+        },
+        "200": {
+          "strict_vital_score": 0.639344262295082,
+          "strict_all_score": 0.5795454545454546,
+          "vital_score": 0.6639344262295082,
+          "all_score": 0.5965909090909091,
+          "words": 702
+        },
+        "213": {
+          "strict_vital_score": 0.7037037037037037,
+          "strict_all_score": 0.66,
+          "vital_score": 0.7407407407407407,
+          "all_score": 0.7,
+          "words": 598
+        },
+        "219": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.425,
+          "vital_score": 0.5666666666666667,
+          "all_score": 0.475,
+          "words": 313
+        },
+        "224": {
+          "strict_vital_score": 0.40625,
+          "strict_all_score": 0.3717948717948718,
+          "vital_score": 0.4609375,
+          "all_score": 0.44871794871794873,
+          "words": 356
+        },
+        "225": {
+          "strict_vital_score": 0.20588235294117646,
+          "strict_all_score": 0.25,
+          "vital_score": 0.20588235294117646,
+          "all_score": 0.25,
+          "words": 400
+        },
+        "233": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.4339622641509434,
+          "vital_score": 0.5166666666666667,
+          "all_score": 0.4716981132075472,
+          "words": 333
+        },
+        "273": {
+          "strict_vital_score": 0.5434782608695652,
+          "strict_all_score": 0.46774193548387094,
+          "vital_score": 0.5978260869565217,
+          "all_score": 0.5080645161290323,
+          "words": 427
+        },
+        "300": {
+          "strict_vital_score": 0.2903225806451613,
+          "strict_all_score": 0.3617021276595745,
+          "vital_score": 0.3064516129032258,
+          "all_score": 0.39361702127659576,
+          "words": 374
+        },
+        "31": {
+          "strict_vital_score": 0.4583333333333333,
+          "strict_all_score": 0.4411764705882353,
+          "vital_score": 0.5,
+          "all_score": 0.4852941176470588,
+          "words": 294
+        },
+        "37": {
+          "strict_vital_score": 0.43478260869565216,
+          "strict_all_score": 0.3793103448275862,
+          "vital_score": 0.43478260869565216,
+          "all_score": 0.41379310344827586,
+          "words": 498
+        },
+        "407": {
+          "strict_vital_score": 0.2619047619047619,
+          "strict_all_score": 0.23076923076923078,
+          "vital_score": 0.32142857142857145,
+          "all_score": 0.28846153846153844,
+          "words": 312
+        },
+        "477": {
+          "strict_vital_score": 0.5405405405405406,
+          "strict_all_score": 0.5306122448979592,
+          "vital_score": 0.5945945945945946,
+          "all_score": 0.5816326530612245,
+          "words": 793
+        },
+        "499": {
+          "strict_vital_score": 0.3333333333333333,
+          "strict_all_score": 0.27692307692307694,
+          "vital_score": 0.3541666666666667,
+          "all_score": 0.3,
+          "words": 204
+        },
+        "515": {
+          "strict_vital_score": 0.375,
+          "strict_all_score": 0.2926829268292683,
+          "vital_score": 0.40625,
+          "all_score": 0.3170731707317073,
+          "words": 391
+        },
+        "58": {
+          "strict_vital_score": 0.2571428571428571,
+          "strict_all_score": 0.2564102564102564,
+          "vital_score": 0.2714285714285714,
+          "all_score": 0.2692307692307692,
+          "words": 308
+        },
+        "707": {
+          "strict_vital_score": 0.17391304347826086,
+          "strict_all_score": 0.13793103448275862,
+          "vital_score": 0.18840579710144928,
+          "all_score": 0.15517241379310345,
+          "words": 486
+        },
+        "72": {
+          "strict_vital_score": 0.1527777777777778,
+          "strict_all_score": 0.14444444444444443,
+          "vital_score": 0.1875,
+          "all_score": 0.17777777777777778,
+          "words": 286
+        },
+        "84": {
+          "strict_vital_score": 0.36585365853658536,
+          "strict_all_score": 0.3333333333333333,
+          "vital_score": 0.36585365853658536,
+          "all_score": 0.3333333333333333,
+          "words": 407
+        },
+        "897": {
+          "strict_vital_score": 0.39622641509433965,
+          "strict_all_score": 0.3466666666666667,
+          "vital_score": 0.41509433962264153,
+          "all_score": 0.37333333333333335,
+          "words": 405
+        }
+      }
+    },
+    "bp_v2_evidence_dev22_supported": {
+      "n_topics": 22,
+      "strict_vital_score": 0.5073080165793502,
+      "strict_all_score": 0.4799257628993862,
+      "median_words": 583.0,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.5333333333333333,
+          "strict_all_score": 0.515625,
+          "vital_score": 0.5555555555555556,
+          "all_score": 0.53125,
+          "words": 850
+        },
+        "144": {
+          "strict_vital_score": 0.6666666666666666,
+          "strict_all_score": 0.6590909090909091,
+          "vital_score": 0.6818181818181818,
+          "all_score": 0.6704545454545454,
+          "words": 810
+        },
+        "161": {
+          "strict_vital_score": 0.6666666666666666,
+          "strict_all_score": 0.5571428571428572,
+          "vital_score": 0.7083333333333334,
+          "all_score": 0.5928571428571429,
+          "words": 949
+        },
+        "200": {
+          "strict_vital_score": 0.6721311475409836,
+          "strict_all_score": 0.5909090909090909,
+          "vital_score": 0.7049180327868853,
+          "all_score": 0.625,
+          "words": 909
+        },
+        "213": {
+          "strict_vital_score": 0.7407407407407407,
+          "strict_all_score": 0.76,
+          "vital_score": 0.7592592592592593,
+          "all_score": 0.78,
+          "words": 839
+        },
+        "219": {
+          "strict_vital_score": 0.6333333333333333,
+          "strict_all_score": 0.675,
+          "vital_score": 0.7,
+          "all_score": 0.725,
+          "words": 779
+        },
+        "224": {
+          "strict_vital_score": 0.390625,
+          "strict_all_score": 0.358974358974359,
+          "vital_score": 0.4609375,
+          "all_score": 0.44871794871794873,
+          "words": 504
+        },
+        "225": {
+          "strict_vital_score": 0.29411764705882354,
+          "strict_all_score": 0.38636363636363635,
+          "vital_score": 0.29411764705882354,
+          "all_score": 0.38636363636363635,
+          "words": 695
+        },
+        "233": {
+          "strict_vital_score": 0.6666666666666666,
+          "strict_all_score": 0.5471698113207547,
+          "vital_score": 0.7333333333333333,
+          "all_score": 0.5943396226415094,
+          "words": 494
+        },
+        "273": {
+          "strict_vital_score": 0.5869565217391305,
+          "strict_all_score": 0.5,
+          "vital_score": 0.6413043478260869,
+          "all_score": 0.5403225806451613,
+          "words": 503
+        },
+        "300": {
+          "strict_vital_score": 0.25806451612903225,
+          "strict_all_score": 0.3404255319148936,
+          "vital_score": 0.3064516129032258,
+          "all_score": 0.3829787234042553,
+          "words": 536
+        },
+        "31": {
+          "strict_vital_score": 0.625,
+          "strict_all_score": 0.5588235294117647,
+          "vital_score": 0.6458333333333334,
+          "all_score": 0.6029411764705882,
+          "words": 429
+        },
+        "37": {
+          "strict_vital_score": 0.43478260869565216,
+          "strict_all_score": 0.41379310344827586,
+          "vital_score": 0.43478260869565216,
+          "all_score": 0.41379310344827586,
+          "words": 726
+        },
+        "407": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.5,
+          "vital_score": 0.5119047619047619,
+          "all_score": 0.5096153846153846,
+          "words": 564
+        },
+        "477": {
+          "strict_vital_score": 0.5945945945945946,
+          "strict_all_score": 0.6326530612244898,
+          "vital_score": 0.6351351351351351,
+          "all_score": 0.6632653061224489,
+          "words": 988
+        },
+        "499": {
+          "strict_vital_score": 0.7291666666666666,
+          "strict_all_score": 0.676923076923077,
+          "vital_score": 0.7604166666666666,
+          "all_score": 0.7076923076923077,
+          "words": 545
+        },
+        "515": {
+          "strict_vital_score": 0.40625,
+          "strict_all_score": 0.3170731707317073,
+          "vital_score": 0.421875,
+          "all_score": 0.32926829268292684,
+          "words": 454
+        },
+        "58": {
+          "strict_vital_score": 0.37142857142857144,
+          "strict_all_score": 0.358974358974359,
+          "vital_score": 0.4,
+          "all_score": 0.38461538461538464,
+          "words": 463
+        },
+        "707": {
+          "strict_vital_score": 0.18840579710144928,
+          "strict_all_score": 0.14942528735632185,
+          "vital_score": 0.1956521739130435,
+          "all_score": 0.15517241379310345,
+          "words": 706
+        },
+        "72": {
+          "strict_vital_score": 0.2777777777777778,
+          "strict_all_score": 0.24444444444444444,
+          "vital_score": 0.3125,
+          "all_score": 0.2833333333333333,
+          "words": 535
+        },
+        "84": {
+          "strict_vital_score": 0.4146341463414634,
+          "strict_all_score": 0.3888888888888889,
+          "vital_score": 0.4268292682926829,
+          "all_score": 0.39814814814814814,
+          "words": 518
+        },
+        "897": {
+          "strict_vital_score": 0.5094339622641509,
+          "strict_all_score": 0.4266666666666667,
+          "vital_score": 0.5377358490566038,
+          "all_score": 0.44666666666666666,
+          "words": 602
+        }
+      }
+    },
+    "bp_v2_multipass_dev22_grounded": {
+      "n_topics": 22,
+      "strict_vital_score": 0.41663015715674984,
+      "strict_all_score": 0.38283357877414603,
+      "median_words": 504.0,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.28888888888888886,
+          "strict_all_score": 0.3125,
+          "vital_score": 0.3333333333333333,
+          "all_score": 0.359375,
+          "words": 397
+        },
+        "144": {
+          "strict_vital_score": 0.6060606060606061,
+          "strict_all_score": 0.6136363636363636,
+          "vital_score": 0.6060606060606061,
+          "all_score": 0.6136363636363636,
+          "words": 670
+        },
+        "161": {
+          "strict_vital_score": 0.6458333333333334,
+          "strict_all_score": 0.5428571428571428,
+          "vital_score": 0.65625,
+          "all_score": 0.55,
+          "words": 759
+        },
+        "200": {
+          "strict_vital_score": 0.4426229508196721,
+          "strict_all_score": 0.42045454545454547,
+          "vital_score": 0.47540983606557374,
+          "all_score": 0.4431818181818182,
+          "words": 503
+        },
+        "213": {
+          "strict_vital_score": 0.5925925925925926,
+          "strict_all_score": 0.62,
+          "vital_score": 0.6666666666666666,
+          "all_score": 0.67,
+          "words": 502
+        },
+        "219": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.5,
+          "vital_score": 0.6,
+          "all_score": 0.575,
+          "words": 351
+        },
+        "224": {
+          "strict_vital_score": 0.421875,
+          "strict_all_score": 0.3717948717948718,
+          "vital_score": 0.4609375,
+          "all_score": 0.4423076923076923,
+          "words": 487
+        },
+        "225": {
+          "strict_vital_score": 0.23529411764705882,
+          "strict_all_score": 0.25,
+          "vital_score": 0.23529411764705882,
+          "all_score": 0.26136363636363635,
+          "words": 527
+        },
+        "233": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.37735849056603776,
+          "vital_score": 0.55,
+          "all_score": 0.41509433962264153,
+          "words": 249
+        },
+        "273": {
+          "strict_vital_score": 0.5652173913043478,
+          "strict_all_score": 0.4838709677419355,
+          "vital_score": 0.6086956521739131,
+          "all_score": 0.5161290322580645,
+          "words": 492
+        },
+        "300": {
+          "strict_vital_score": 0.25806451612903225,
+          "strict_all_score": 0.2553191489361702,
+          "vital_score": 0.27419354838709675,
+          "all_score": 0.2765957446808511,
+          "words": 545
+        },
+        "31": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.47058823529411764,
+          "vital_score": 0.5416666666666666,
+          "all_score": 0.5147058823529411,
+          "words": 702
+        },
+        "37": {
+          "strict_vital_score": 0.34782608695652173,
+          "strict_all_score": 0.3103448275862069,
+          "vital_score": 0.3695652173913043,
+          "all_score": 0.3275862068965517,
+          "words": 505
+        },
+        "407": {
+          "strict_vital_score": 0.2619047619047619,
+          "strict_all_score": 0.25,
+          "vital_score": 0.30952380952380953,
+          "all_score": 0.28846153846153844,
+          "words": 349
+        },
+        "477": {
+          "strict_vital_score": 0.5405405405405406,
+          "strict_all_score": 0.5102040816326531,
+          "vital_score": 0.5540540540540541,
+          "all_score": 0.5306122448979592,
+          "words": 557
+        },
+        "499": {
+          "strict_vital_score": 0.3541666666666667,
+          "strict_all_score": 0.27692307692307694,
+          "vital_score": 0.3854166666666667,
+          "all_score": 0.3,
+          "words": 309
+        },
+        "515": {
+          "strict_vital_score": 0.53125,
+          "strict_all_score": 0.4146341463414634,
+          "vital_score": 0.53125,
+          "all_score": 0.4146341463414634,
+          "words": 871
+        },
+        "58": {
+          "strict_vital_score": 0.42857142857142855,
+          "strict_all_score": 0.41025641025641024,
+          "vital_score": 0.4714285714285714,
+          "all_score": 0.44871794871794873,
+          "words": 535
+        },
+        "707": {
+          "strict_vital_score": 0.13043478260869565,
+          "strict_all_score": 0.10344827586206896,
+          "vital_score": 0.14492753623188406,
+          "all_score": 0.1206896551724138,
+          "words": 400
+        },
+        "72": {
+          "strict_vital_score": 0.1527777777777778,
+          "strict_all_score": 0.14444444444444443,
+          "vital_score": 0.1736111111111111,
+          "all_score": 0.16111111111111112,
+          "words": 342
+        },
+        "84": {
+          "strict_vital_score": 0.3902439024390244,
+          "strict_all_score": 0.37037037037037035,
+          "vital_score": 0.4024390243902439,
+          "all_score": 0.37962962962962965,
+          "words": 593
+        },
+        "897": {
+          "strict_vital_score": 0.4716981132075472,
+          "strict_all_score": 0.41333333333333333,
+          "vital_score": 0.49056603773584906,
+          "all_score": 0.43333333333333335,
+          "words": 570
+        }
+      }
+    },
+    "bp_v2_multipass_dev22_supported": {
+      "n_topics": 22,
+      "strict_vital_score": 0.5128167010713697,
+      "strict_all_score": 0.47779432112719167,
+      "median_words": 728.0,
+      "n_failed": 0,
+      "per_topic": {
+        "14": {
+          "strict_vital_score": 0.4444444444444444,
+          "strict_all_score": 0.4375,
+          "vital_score": 0.4888888888888889,
+          "all_score": 0.4921875,
+          "words": 598
+        },
+        "144": {
+          "strict_vital_score": 0.6060606060606061,
+          "strict_all_score": 0.6136363636363636,
+          "vital_score": 0.6212121212121212,
+          "all_score": 0.625,
+          "words": 766
+        },
+        "161": {
+          "strict_vital_score": 0.6458333333333334,
+          "strict_all_score": 0.5428571428571428,
+          "vital_score": 0.65625,
+          "all_score": 0.55,
+          "words": 958
+        },
+        "200": {
+          "strict_vital_score": 0.6065573770491803,
+          "strict_all_score": 0.5113636363636364,
+          "vital_score": 0.6557377049180327,
+          "all_score": 0.5625,
+          "words": 711
+        },
+        "213": {
+          "strict_vital_score": 0.8148148148148148,
+          "strict_all_score": 0.78,
+          "vital_score": 0.8148148148148148,
+          "all_score": 0.79,
+          "words": 737
+        },
+        "219": {
+          "strict_vital_score": 0.6333333333333333,
+          "strict_all_score": 0.65,
+          "vital_score": 0.6666666666666666,
+          "all_score": 0.6875,
+          "words": 698
+        },
+        "224": {
+          "strict_vital_score": 0.484375,
+          "strict_all_score": 0.44871794871794873,
+          "vital_score": 0.5234375,
+          "all_score": 0.5064102564102564,
+          "words": 596
+        },
+        "225": {
+          "strict_vital_score": 0.29411764705882354,
+          "strict_all_score": 0.36363636363636365,
+          "vital_score": 0.29411764705882354,
+          "all_score": 0.375,
+          "words": 691
+        },
+        "233": {
+          "strict_vital_score": 0.6666666666666666,
+          "strict_all_score": 0.5849056603773585,
+          "vital_score": 0.6666666666666666,
+          "all_score": 0.5943396226415094,
+          "words": 490
+        },
+        "273": {
+          "strict_vital_score": 0.6086956521739131,
+          "strict_all_score": 0.5645161290322581,
+          "vital_score": 0.6521739130434783,
+          "all_score": 0.6048387096774194,
+          "words": 599
+        },
+        "300": {
+          "strict_vital_score": 0.3225806451612903,
+          "strict_all_score": 0.2553191489361702,
+          "vital_score": 0.3387096774193548,
+          "all_score": 0.26595744680851063,
+          "words": 790
+        },
+        "31": {
+          "strict_vital_score": 0.5833333333333334,
+          "strict_all_score": 0.5294117647058824,
+          "vital_score": 0.625,
+          "all_score": 0.5588235294117647,
+          "words": 853
+        },
+        "37": {
+          "strict_vital_score": 0.4782608695652174,
+          "strict_all_score": 0.4482758620689655,
+          "vital_score": 0.4782608695652174,
+          "all_score": 0.46551724137931033,
+          "words": 770
+        },
+        "407": {
+          "strict_vital_score": 0.42857142857142855,
+          "strict_all_score": 0.4230769230769231,
+          "vital_score": 0.44047619047619047,
+          "all_score": 0.4326923076923077,
+          "words": 863
+        },
+        "477": {
+          "strict_vital_score": 0.5675675675675675,
+          "strict_all_score": 0.5510204081632653,
+          "vital_score": 0.6081081081081081,
+          "all_score": 0.5918367346938775,
+          "words": 777
+        },
+        "499": {
+          "strict_vital_score": 0.8541666666666666,
+          "strict_all_score": 0.7384615384615385,
+          "vital_score": 0.8645833333333334,
+          "all_score": 0.7461538461538462,
+          "words": 791
+        },
+        "515": {
+          "strict_vital_score": 0.5,
+          "strict_all_score": 0.3902439024390244,
+          "vital_score": 0.546875,
+          "all_score": 0.4268292682926829,
+          "words": 958
+        },
+        "58": {
+          "strict_vital_score": 0.42857142857142855,
+          "strict_all_score": 0.41025641025641024,
+          "vital_score": 0.44285714285714284,
+          "all_score": 0.4230769230769231,
+          "words": 621
+        },
+        "707": {
+          "strict_vital_score": 0.14492753623188406,
+          "strict_all_score": 0.11494252873563218,
+          "vital_score": 0.15217391304347827,
+          "all_score": 0.13793103448275862,
+          "words": 567
+        },
+        "72": {
+          "strict_vital_score": 0.2638888888888889,
+          "strict_all_score": 0.24444444444444444,
+          "vital_score": 0.2916666666666667,
+          "all_score": 0.2722222222222222,
+          "words": 568
+        },
+        "84": {
+          "strict_vital_score": 0.4146341463414634,
+          "strict_all_score": 0.3888888888888889,
+          "vital_score": 0.4146341463414634,
+          "all_score": 0.3888888888888889,
+          "words": 719
+        },
+        "897": {
+          "strict_vital_score": 0.49056603773584906,
+          "strict_all_score": 0.52,
+          "vital_score": 0.5188679245283019,
+          "all_score": 0.54,
+          "words": 745
+        }
+      }
+    }
+  }
+}

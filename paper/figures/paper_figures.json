@@ -1,0 +1,37 @@
+{
+  "maps": {
+    "context": {
+      "whole question": 10,
+      "education": 6,
+      "hiring": 1,
+      "accountability": 3,
+      "budget": 6,
+      "pitfalls": 2
+    },
+    "scored": {
+      "pitfalls": 30,
+      "education": 58,
+      "accountability": 26,
+      "hiring": 43,
+      "budget": 30,
+      "whole question": 10
+    }
+  },
+  "grounded": {
+    "coverage": {
+      "bp_agentic_v2_dev22": 0.3560274245151649,
+      "bp_v2_evidence_dev22": 0.4881049138095535,
+      "bp_v2_multipass_dev22": 0.4903824084779862
+    },
+    "grounded": {
+      "bp_agentic_v2_dev22": 0.3045985351663627,
+      "bp_v2_evidence_dev22": 0.3818088929475678,
+      "bp_v2_multipass_dev22": 0.38283357877414603
+    },
+    "fully_supported_share": {
+      "bp_agentic_v2_dev22": 0.8260869565217391,
+      "bp_v2_evidence_dev22": 0.6487804878048781,
+      "bp_v2_multipass_dev22": 0.677710843373494
+    }
+  }
+}
