@@ -321,49 +321,55 @@ def stages():
 def grounded():
     runs = {}
     for f in ("nugget_dev22_existing.json", "nugget_dev22_arms.json", "nugget_dev22_multipass.json",
-              "nugget_dev22_grounded.json"):
+              "nugget_dev22_grounded.json", "nugget_dev22_review.json"):
         runs.update(json.loads((ANALYSIS / f).read_text())["runs"])
-    names = [("submitted", "bp_agentic_v2_dev22"), ("best passages", "bp_v2_evidence_dev22"),
-             ("weights, reviews", "bp_v2_multipass_dev22")]   # the row names of Table 4
-    full = {}
-    for _, run in names:
-        sents = [s for r in map(json.loads, open(ROOT / f"runs/rag/{run}.support_judgments.jsonl"))
-                 for s in r["sentences"]]
-        full[run] = sum(any(c["support"] == 2 for c in s["citations"]) for s in sents) / len(sents)
-    a = {run: runs[run]["strict_all_score"] for _, run in names}
-    g = {run: runs[f"{run}_grounded"]["strict_all_score"] for _, run in names}
-    # numbers printed in the paper
-    assert near(a["bp_agentic_v2_dev22"], 0.356) and near(g["bp_agentic_v2_dev22"], 0.305)
-    assert near(a["bp_v2_evidence_dev22"], 0.488) and near(g["bp_v2_evidence_dev22"], 0.382)
-    assert round(full["bp_agentic_v2_dev22"] * 100) == 83 and round(full["bp_v2_evidence_dev22"] * 100) == 65
+    names = [("submitted", "bp_agentic_v2_dev22"), ("coverage prompt", "bp_v2_coverage_dev22"),
+             ("best passages", "bp_v2_evidence_dev22"), ("weights, reviews", "bp_v2_multipass_dev22")]
 
-    fig = plt.figure(figsize=(COL, 1.85))
-    a1 = fig.add_axes([0.31, 0.27, 0.42, 0.58])
-    a2 = fig.add_axes([0.77, 0.27, 0.20, 0.58])
-    ys = [2, 1, 0]
+    def share(run, suffix):
+        sents = [s for r in map(json.loads, open(ROOT / f"runs/rag/{run}{suffix}")) for s in r["sentences"]]
+        return sum(any(c["support"] == 2 for c in s["citations"]) for s in sents) / len(sents)
+    a = {run: runs[run]["strict_all_score"] for _, run in names}
+    g4 = {run: runs[f"{run}_grounded"]["strict_all_score"] for _, run in names}
+    gs = {run: runs[f"{run}_shown_grounded"]["strict_all_score"] for _, run in names}
+    f4 = {run: share(run, ".support_judgments.jsonl") for _, run in names}
+    fs = {run: share(run, ".support_shown.jsonl") for _, run in names}
+    # numbers printed in the paper (Table 4 and the text)
+    expect = {"bp_agentic_v2_dev22": (0.356, 0.305, 0.250, 83, 68), "bp_v2_coverage_dev22": (0.439, 0.374, 0.340, 76, 65),
+              "bp_v2_evidence_dev22": (0.488, 0.382, 0.347, 65, 59), "bp_v2_multipass_dev22": (0.490, 0.383, 0.381, 68, 67)}
+    for run, (x, y, z, p, q) in expect.items():
+        assert near(a[run], x) and near(g4[run], y) and near(gs[run], z), run
+        assert round(f4[run] * 100) == p and round(fs[run] * 100) == q, run
+
+    fig = plt.figure(figsize=(COL, 2.75))
+    a1 = fig.add_axes([0.345, 0.33, 0.32, 0.56])
+    a2 = fig.add_axes([0.71, 0.33, 0.245, 0.56])
+    ys = [3, 2, 1, 0]
     for (label, run), y in zip(names, ys):
-        a1.annotate("", xy=(g[run], y), xytext=(a[run], y),
-                    arrowprops=dict(arrowstyle="-|>", color=MID, lw=1.3, shrinkA=4, shrinkB=4))
-        a1.plot([a[run]], [y], "o", color=INK, ms=5.5)
-        a1.plot([g[run]], [y], "o", color=INK, ms=5.5, mfc="white")
-        a2.barh(y, full[run] * 100, height=0.5, color=SERIES[0])
-        a2.text(full[run] * 100 - 3, y, f"{full[run] * 100:.0f}%", ha="right", va="center", color="white")
+        a1.plot([min(gs[run], g4[run]), a[run]], [y, y], color=MID, lw=1.3, zorder=1)
+        a1.plot([a[run]], [y], "o", color=INK, ms=5.5, zorder=3)
+        a1.plot([g4[run]], [y], "o", color=INK, ms=5.5, mfc="white", zorder=3)
+        a1.plot([gs[run]], [y], "s", color=SERIES[0], ms=5, mfc="white", mew=1.4, zorder=3)
+        a2.barh(y + 0.17, f4[run] * 100, height=0.32, color=MID)
+        a2.barh(y - 0.17, fs[run] * 100, height=0.32, color=SERIES[0])
     a1.set_yticks(ys); a1.set_yticklabels([n for n, _ in names])
     a2.set_yticks([])
     for ax in (a1, a2):
         ax.tick_params(axis="y", length=0); ax.spines["left"].set_visible(False)
         ax.grid(axis="x", color=GRID, lw=0.6); ax.set_axisbelow(True)
-        ax.set_ylim(-0.6, 2.6)
-    a1.set_xlim(0.27, 0.52); a1.set_xticks([0.3, 0.4, 0.5])
+        ax.set_ylim(-0.6, 3.6)
+    a1.set_xlim(0.22, 0.52); a1.set_xticks([0.3, 0.4, 0.5])
     a2.set_xlim(0, 100); a2.set_xticks([0, 50, 100])
     a1.set_title("(a) coverage", pad=3)
-    a2.set_title("(b) backed", pad=3)
-    a1.legend(handles=[plt.Line2D([], [], marker="o", ls="", color=INK, ms=5.5, label="all sentences"),
-                       plt.Line2D([], [], marker="o", ls="", color=INK, mfc="white", ms=5.5,
-                                  label="fully supported only")],
-              loc="lower left", bbox_to_anchor=(-0.80, -0.42), ncol=2, handletextpad=0.1, columnspacing=0.8)
+    a2.set_title("(b) supported", pad=3)
+    fig.legend(handles=[plt.Line2D([], [], marker="o", ls="", color=INK, ms=5.5, label="all sentences"),
+                        plt.Line2D([], [], marker="o", ls="", color=INK, mfc="white", ms=5.5,
+                                   label="supported, first 4,000 characters"),
+                        plt.Line2D([], [], marker="s", ls="", color=SERIES[0], mfc="white", mew=1.4, ms=5,
+                                   label="supported, passage shown")],
+               loc="lower left", bbox_to_anchor=(0.0, 0.0), ncol=1, handletextpad=0.2, labelspacing=0.2)
     save(fig, "fig_grounded.pdf")
-    return {"coverage": a, "grounded": g, "fully_supported_share": full}
+    return {"coverage": a, "grounded_first4000": g4, "grounded_shown": gs, "supported_first4000": f4, "supported_shown": fs}
 
 
 if __name__ == "__main__":

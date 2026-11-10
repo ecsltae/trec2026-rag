@@ -1,0 +1,85 @@
+{
+ "dev22_p10_ourlabels": {
+  "unlabelled": 40,
+  "anchor-first": {
+   "P@10": 0.8409090909090909,
+   "minus_anchor_first": 0.0,
+   "se": 0.0,
+   "up": 0,
+   "down": 0
+  },
+  "RRF, whole topic x2": {
+   "P@10": 0.9227272727272727,
+   "minus_anchor_first": 0.0818181818181818,
+   "se": 0.036417708715234816,
+   "up": 10,
+   "down": 1
+  },
+  "RRF, whole topic x8": {
+   "P@10": 0.8409090909090909,
+   "minus_anchor_first": -5.046468293750712e-18,
+   "se": 0.009304842103984709,
+   "up": 2,
+   "down": 2
+  },
+  "cross-encoder alone": {
+   "P@10": 0.8954545454545455,
+   "minus_anchor_first": 0.05454545454545454,
+   "se": 0.029223184124221074,
+   "up": 6,
+   "down": 1
+  },
+  "naive sub-questions": {
+   "P@10": 0.4818181818181818,
+   "minus_anchor_first": -0.3590909090909091,
+   "se": 0.06017977789141641,
+   "up": 1,
+   "down": 19
+  },
+  "plain BM25": {
+   "P@10": 0.6363636363636364,
+   "minus_anchor_first": -0.20454545454545456,
+   "se": 0.04133972478544677,
+   "up": 0,
+   "down": 17
+  },
+  "anchor-first, bge reranker": {
+   "P@10": 0.7090909090909091,
+   "minus_anchor_first": -0.13181818181818183,
+   "se": 0.03858221313513978,
+   "up": 2,
+   "down": 13
+  }
+ },
+ "depth_matched": {
+  "narratives": 82,
+  "unlabelled": 0,
+  "rel_scored_mean": 87.6951219512195,
+  "rel_anchorfirst_mean": 52,
+  "diff": 35.69512195121951,
+  "se": 3.3151123050083684,
+  "up": 77,
+  "down": 4,
+  "P_scored": 0.6417819856337151,
+  "P_anchorfirst": 0.34766746367222007,
+  "overlap": 0.13006991447915714
+ },
+ "support_shown": {
+  "bp_agentic_v2_dev22": {
+   "original": 0.8260869565217391,
+   "shown": 0.6758893280632411
+  },
+  "bp_v2_coverage_dev22": {
+   "original": 0.758998435054773,
+   "shown": 0.6463223787167449
+  },
+  "bp_v2_evidence_dev22": {
+   "original": 0.6487804878048781,
+   "shown": 0.5869918699186992
+  },
+  "bp_v2_multipass_dev22": {
+   "original": 0.677710843373494,
+   "shown": 0.6686746987951807
+  }
+ }
+}

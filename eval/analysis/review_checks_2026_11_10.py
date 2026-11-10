@@ -104,19 +104,14 @@ def dev22_lists():
 
 
 def dev22_text_of():
-    from systems.rag.agentic_v2.harvest import read_pool
+    """Text from every local pool cache. The search API was down (HTTP 502) on 2026-11-10, so the
+    40 top-ten documents of the sub-question run that no cache holds stay unlabelled and are
+    reported as such."""
     from eval.ragdoll_local_judge import build_text_index
-    index = build_text_index(DEV)
-    api = {}
-
-    def text_of(t, d):
-        if d in index:
-            return index[d]
-        if "r" not in api:
-            from systems.rag.retrieve import ApiRetriever
-            api["r"] = ApiRetriever()
-        return api["r"].get_text(d) or ""
-    return text_of
+    index = {}
+    for c in sorted((ROOT / "data/rag/cache/agentic_v2").iterdir()):
+        index.update(build_text_index(c))
+    return lambda t, d: index.get(d, "")
 
 
 def dev22_label():
@@ -229,6 +224,10 @@ def report():
     g = lambda t, d: lab.get(key(t, d))
     unl = sum(g(t, d) is None for L in lists.values() for t in T for d in L[t])
     p10 = {n: [sum((g(t, d) or 0) >= 2 for d in L[t]) / 10 for t in T] for n, L in lists.items()}
+    for n, L in lists.items():
+        miss = sum(g(t, d) is None for t in T for d in L[t])
+        if miss:
+            print(f"  {n}: {miss} of {10 * len(T)} top-ten documents without text, counted as not relevant")
     res["dev22_p10_ourlabels"] = {"unlabelled": unl}
     print(f"\nTable 1 rows, top ten, all labelled by our labeller ({unl} unlabelled):")
     for n, v in p10.items():

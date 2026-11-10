@@ -1,7 +1,7 @@
 {
   "maps": {
     "context": {
-      "whole question": 10,
+      "whole topic": 10,
       "education": 6,
       "hiring": 1,
       "accountability": 3,
@@ -14,24 +14,39 @@
       "accountability": 26,
       "hiring": 43,
       "budget": 30,
-      "whole question": 10
+      "whole topic": 10
     }
   },
   "grounded": {
     "coverage": {
       "bp_agentic_v2_dev22": 0.3560274245151649,
+      "bp_v2_coverage_dev22": 0.43882179841399604,
       "bp_v2_evidence_dev22": 0.4881049138095535,
       "bp_v2_multipass_dev22": 0.4903824084779862
     },
-    "grounded": {
+    "grounded_first4000": {
       "bp_agentic_v2_dev22": 0.3045985351663627,
+      "bp_v2_coverage_dev22": 0.3743723889298291,
       "bp_v2_evidence_dev22": 0.3818088929475678,
       "bp_v2_multipass_dev22": 0.38283357877414603
     },
-    "fully_supported_share": {
+    "grounded_shown": {
+      "bp_agentic_v2_dev22": 0.25014691431200176,
+      "bp_v2_coverage_dev22": 0.3401004551864207,
+      "bp_v2_evidence_dev22": 0.3465237218935037,
+      "bp_v2_multipass_dev22": 0.3812697426386718
+    },
+    "supported_first4000": {
       "bp_agentic_v2_dev22": 0.8260869565217391,
+      "bp_v2_coverage_dev22": 0.758998435054773,
       "bp_v2_evidence_dev22": 0.6487804878048781,
       "bp_v2_multipass_dev22": 0.677710843373494
+    },
+    "supported_shown": {
+      "bp_agentic_v2_dev22": 0.6758893280632411,
+      "bp_v2_coverage_dev22": 0.6463223787167449,
+      "bp_v2_evidence_dev22": 0.5869918699186992,
+      "bp_v2_multipass_dev22": 0.6686746987951807
     }
   }
 }

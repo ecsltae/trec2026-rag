@@ -24,7 +24,6 @@
 \usetikzlibrary{arrows.meta,fit}
 
 \newcommand{\run}[1]{\mbox{\textbf{#1}}}   %% run tags: bold, never hyphenated
-\newcommand{\TBD}[1]{\textcolor{red}{[TBD: #1]}}   %% must be gone before submission
 \sloppy
 \emergencystretch=2em
 
@@ -61,14 +60,20 @@ locally on open-weight models. A model splits each topic into four to six facets
 retrieval runs for every facet and for the whole topic, and the answer is written
 facet by facet with every sentence cited. Our primary retrieval run sits at the
 median of 114 runs on set precision and above it on set recall, and nine in ten of
-the documents it returned came from the facet rankings. \TBD{counterfactual}
+the documents it returned came from the facet rankings. Labelled by our own judge,
+these rankings hold two thirds more relevant documents than the whole-topic ranking
+cut at the same depth.
 The development labels we tuned on were pooled from whole-topic retrieval and
 labelled few facet documents, so they could not rank lists built from facet
-queries. \TBD{relabelling} All four generation runs are in the bottom half of the
+queries. Labelled by one judge, our own, the fusion rule we had rejected puts more
+relevant documents in the top ten than the one we chose. All four generation runs are in the bottom half of the
 field on the scores released so far, human preference and nugget coverage. The
 citation-support scores that the track's guidelines announce, the property we had
 optimised, have not been released. Rewriting our development answers for coverage
-raised it from 0.36 to 0.49 under our own judges, \TBD{grounded}. Of the judges we
+raised it from 0.36 to 0.49 under our own judges. Counted only over sentences that
+the passage shown to the writer fully supports, the gain is 0.10, and every writer
+owes a quarter to a third of its coverage to sentences no such passage fully
+supports. Of the judges we
 built, the relevance labeller ranked topics as the official judge did but was twice
 as lenient, the pairwise judge reversed a third of its verdicts when the answers
 were swapped, and the support judge gave full marks to refusals.
@@ -106,7 +111,8 @@ own judges to choose between systems. This paper contributes:
 \begin{itemize}\setlength{\itemsep}{1pt}
 \item a facet-based retrieval pipeline whose scored rankings are nine-tenths facet
 documents, at the field median on set precision and above it on set recall, with
-\TBD{counterfactual, one clause};
+two thirds more relevant documents than the whole-topic ranking cut at the same
+depth, by our own labeller;
 \item evidence that development labels pooled from whole-topic retrieval cannot
 rank lists built from facet queries, including the fusion rule we chose on them,
 and a re-scoring of those lists by a single judge;
@@ -377,7 +383,7 @@ and the 25 judged for nuggets. The field columns summarise the 114 evaluated run
 \toprule
  & & & \multicolumn{2}{c}{field} \\
 \cmidrule(lr){4-5}
- & primary & probe-guided & median & max \\
+ & primary & \shortstack{probe-\\guided} & median & max \\
 \midrule
 set precision & 0.3456 & 0.3042 & 0.3499 & 0.7297 \\
 set recall & 0.1659 & 0.1108 & 0.1002 & 0.5475 \\
@@ -425,8 +431,18 @@ score.}
 \end{figure}
 
 \subsubsection{Facet documents against the whole topic at the same depth}
-\TBD{depth-matched counterfactual: our labeller, 82 topics, scored run against the
-anchor-first ranking cut at the same depth}
+Did the facet documents beat what the whole-topic ranking would have returned at the
+same depth? On the 82 topics the organisers judged, our relevance labeller labelled
+every document of the scored run and of the anchor-first ranking cut at the scored
+depth, 19,453 topic--document pairs. Down to rank 200 the anchor-first ranking is the
+whole-topic ranking. The two lists share 13\% of their documents. The scored run holds
+88 relevant documents per topic against 52, a paired difference of 36 (3.3 standard
+errors of the mean, 77 topics up and 4 down). Our labeller is about twice as lenient
+as the official judge, so the absolute counts are high, but it ranks runs and topics
+as the official judge does.
+%% eval/analysis/review_checks_2026_11_10.py depth-label / report: relevant (grade >= 2)
+%% per topic 87.7 vs 52.0, diff +35.7 (SE 3.3), precision 0.642 vs 0.348, overlap 13%;
+%% scored = submissions/bp_agentic_v2, cut = submissions/BiTeM_deep_v2 at the scored depth.
 
 \subsubsection{Headroom}
 From the official per-topic precision $P$ and recall $R$ at our depth $k$, a topic
@@ -464,7 +480,20 @@ anchor-first 0.50 on the v2 labels, within noise. The cross-encoder alone matche
 score mix, and the free sub-questions fall 2 points behind BM25 instead of 14. The
 comparisons between fully labelled lists do not move: reranking the whole topic
 beats plain BM25, and MiniLM beats the larger bge reranker.
-\TBD{our labeller on every top ten: P@10 per row and paired differences}
+To compare the lists under one judge, our relevance labeller labelled every
+document in these top tens, 688 in all. Forty documents of the sub-question run had
+no text on disk and count as not relevant. Under that judge, reciprocal rank fusion
+at weight two puts more relevant documents in the top ten than anchor-first
+(precision at ten 0.92 against 0.84, 2.3 standard errors, 10 topics up and 1 down),
+and the cross-encoder alone does slightly better than the score mix (0.90, 1.9
+standard errors). Keyword queries still beat sub-questions (0.48), reranking still
+beats plain BM25 (0.64), and MiniLM still beats the bge reranker (0.71). Our labeller
+is about twice as lenient as the official judge but ranks topics as it does.
+%% eval/analysis/review_checks_2026_11_10.py dev22-label / report (UMBRELA "bing"
+%% prompt, qwen3:32b, the cache of our official labels). Paired against anchor-first:
+%% RRF x2 +0.082 (SE 0.036, 10-1), RRF x8 0.000 (2-2), cross-encoder alone +0.055
+%% (SE 0.029, 6-1), sub-questions -0.359 (SE 0.060), BM25 -0.205 (SE 0.041),
+%% bge -0.132 (SE 0.039).
 %% eval/analysis/fusion_judged_share.py (rows rebuilt and re-scored; the RRF rows
 %% reproduce EXPERIMENTS.md R5); v2 paired anchor-first minus RRF x2: +0.074 (SE 0.026)
 %% over all documents, -0.029 (SE 0.020) over labelled documents only.
@@ -473,27 +502,28 @@ beats plain BM25, and MiniLM beats the larger bge reranker.
 \caption{Development topics (22), nDCG@10 under the organisers' projected labels,
 v1 and v2, counting unlabelled documents as non-relevant. Labelled: share of the top
 ten with a label. Labelled only: nDCG@10 (v2) over labelled documents, an estimate
-that favours lists resembling the labels' pool. RRF rows are rebuilt from the cached
-rankings; the last row uses the 568M bge reranker.}
+that favours lists resembling the labels' pool. Ours: precision at ten when our
+relevance labeller labels every top-ten document. RRF rows are rebuilt from the cached
+rankings; the last row is anchor-first with the 568M bge reranker.}
 \label{tab:fusion}
 \small
-\setlength{\tabcolsep}{2.8pt}
-\begin{tabular}{lcccc}
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{lccccc}
 \toprule
- & \multicolumn{2}{c}{nDCG@10} & & labelled \\
+ & \multicolumn{2}{c}{nDCG@10} & & labelled & ours \\
 \cmidrule(lr){2-3}
-ranking & v1 & v2 & labelled & only \\
+ranking & v1 & v2 & labelled & only & P@10 \\
 \midrule
-anchor-first (ours) & 0.5352 & 0.4985 & 98\% & 0.5048 \\
-whole topic only & 0.5352 & 0.4985 & 98\% & 0.5048 \\
-RRF, whole topic $\times$2 & 0.4493 & 0.4245 & 74\% & 0.5333 \\
-RRF, whole topic $\times$8 & 0.5273 & 0.4944 & 96\% & 0.5148 \\
-cross-encoder alone & 0.4501 & 0.4021 & 81\% & 0.5003 \\
+anchor-first & 0.5352 & 0.4985 & 98\% & 0.5048 & 0.841 \\
+whole topic only & 0.5352 & 0.4985 & 98\% & 0.5048 & 0.841 \\
+RRF, whole topic $\times$2 & 0.4493 & 0.4245 & 74\% & 0.5333 & \textbf{0.923} \\
+RRF, whole topic $\times$8 & 0.5273 & 0.4944 & 96\% & 0.5148 & 0.841 \\
+cross-encoder alone & 0.4501 & 0.4021 & 81\% & 0.5003 & 0.895 \\
 \midrule
-naive sub-questions & 0.2794 & 0.2810 & 70\% & 0.4002 \\
-plain BM25 & 0.4483 & 0.4238 & 100\% & 0.4238 \\
+naive sub-questions & 0.2794 & 0.2810 & 70\% & 0.4002 & 0.482 \\
+plain BM25 & 0.4483 & 0.4238 & 100\% & 0.4238 & 0.636 \\
 \midrule
-anchor-first, bge reranker & 0.4832 & 0.4456 & 100\% & 0.4456 \\
+bge reranker & 0.4832 & 0.4456 & 100\% & 0.4456 & 0.709 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -503,7 +533,7 @@ the whole-topic ranking are the same list down to rank 200 on 21 of the 22 topic
 and the facet documents show only below it, where recall at 1,000 is 0.30 against
 0.25. The order of our scored runs has 32\% of its top ten labelled. Its precision at
 ten is 0.30 with unlabelled documents counted as misses and 0.93 over labelled
-documents only, so the development labels cannot place it. Applied to the
+documents only, and its precision cannot be estimated from these labels. Applied to the
 development topics, the depth rule keeps a median of 168 documents, 90\% of them from
 facet rankings, and 28\% of the kept documents carry a label.
 %% eval/analysis/team_ideas_2026_11_09.py block 1 and its JSON; identical top-200
@@ -631,12 +661,12 @@ writer was shown. Grounded: coverage counting only those sentences.}
 \cmidrule(lr){6-7}\cmidrule(lr){8-9}
 writer & coverage & $\Delta$ (SE) & vital & words & supported & grounded & supported & grounded \\
 \midrule
-submitted & 0.356 & --- & 0.393 & 268 & 83\% & 0.305 & \TBD{} & \TBD{} \\
+submitted & 0.356 & --- & 0.393 & 268 & 83\% & 0.305 & 68\% & 0.250 \\
 run again$^\ddagger$ & 0.367 & $+0.011$ (1.4) & 0.402 & 274 & --- & --- & --- & --- \\
 950-word cap$^\ddagger$ & 0.379 & $+0.023$ (1.3) & 0.411 & 396 & --- & --- & --- & --- \\
-coverage prompt$^\ddagger$ & 0.439 & $+0.083$ (4.8) & 0.465 & 647 & \TBD{} & \TBD{} & \TBD{} & \TBD{} \\
-best passages$^\ddagger$ & 0.488 & $+0.132$ (6.8) & 0.510 & 636 & 65\% & 0.382 & \TBD{} & \TBD{} \\
-weights, reviews$^\ddagger$ & 0.490 & $+0.134$ (8.3) & 0.523 & 762 & 68\% & 0.383 & \TBD{} & \TBD{} \\
+coverage prompt$^\ddagger$ & 0.439 & $+0.083$ (4.8) & 0.465 & 647 & 76\% & 0.374 & 65\% & 0.340 \\
+best passages$^\ddagger$ & 0.488 & $+0.132$ (6.8) & 0.510 & 636 & 65\% & 0.382 & 59\% & 0.347 \\
+weights, reviews$^\ddagger$ & 0.490 & $+0.134$ (8.3) & 0.523 & 762 & 68\% & 0.383 & 67\% & 0.381 \\
 \midrule
 32B writer & 0.380 & $+0.023$ (1.3) & 0.410 & 253 & --- & --- & --- & --- \\
 agent loop & 0.384 & $+0.028$ (1.4) & 0.419 & 217 & --- & --- & --- & --- \\
@@ -649,12 +679,35 @@ probe-guided & 0.323 & $-0.034$ (1.6) & 0.353 & 376 & --- & --- & --- & --- \\
 %% nugget_dev22_{existing,arms,multipass,grounded,review}.json; supported/grounded:
 %% eval/analysis/grounded_coverage_dev22.py and review_checks_2026_11_10.py support-shown.
 
-\TBD{grounding paragraph: both judges; window confound; coverage-prompt row}
+The rewrite costs some grounding, and how much depends on what the support judge
+reads (Figure~\ref{fig:grounded}). The judge we used during development reads a
+cited document's first 4,000 characters. The submitted writer saw the first 700, and
+the best-passages writer a 1,000-character window that can lie further in. Read the
+first way, the share of sentences with a fully supporting citation falls from 83\%
+to 65\%, and coverage counted over those sentences only rises by 0.08 (3.4 standard
+errors) instead of 0.13. Judged against the passage each writer was shown, the share
+falls from 68\% to 59\% (2.6 standard errors) and the grounded gain is 0.10 (5.6
+standard errors). The coverage prompt, which leaves the writer's input unchanged,
+gains 0.07 to 0.09 in grounded coverage under either reading, and the multi-pass
+writer loses no supported sentences. Every writer, the submitted one included, owes
+a quarter to a third of its coverage to sentences that the shown passage does not
+fully support, and the released measures cannot see that. Both judges are ours and
+have not been checked against people.
+%% eval/analysis/review_checks_2026_11_10.py support-shown and report; paired from
+%% the per-topic scores in nugget_dev22_{existing,arms,multipass,grounded,review}.json:
+%% grounded gain first-4,000 +0.077 (SE 0.022), shown +0.096 (SE 0.017); coverage
+%% prompt +0.070 (SE 0.020) and +0.090 (SE 0.021); supported share, best passages minus
+%% submitted: -0.173 (SE 0.027) and -0.086 (SE 0.034); coverage owed to sentences
+%% without full support (shown): submitted 0.106 of 0.356, best passages 0.142 of 0.488.
 
 \begin{figure}[t]
 \centering
 \includegraphics{figures/fig_grounded.pdf}
-\caption{\TBD{caption after the shown-passage results}}
+\caption{Development answers by writer. (a) Coverage of all nuggets counting every
+sentence (filled) and only sentences with a fully supporting citation, by a support
+judge reading the cited document's first 4,000 characters (open circle) or the passage
+the writer was shown (square). (b) Share of sentences with a fully supporting
+citation under the first reading (grey) and the second (blue).}
 \label{fig:grounded}
 \end{figure}
 
@@ -666,9 +719,9 @@ of the 22 topics. The single review of the submitted writer repaired 23\% of
 development topics and 33\% of test topics, and 95\% of the probe-guided system's
 test topics, whose draft-planned facets the context covers worst. The nugget judge
 puts the 32B writer and the agent loop slightly above the submitted writer, within
-noise, and the probe-guided system below it, also within noise. We rewrote the
-answers to the 42 test topics judged for generation in the same way, so that they can
-be scored if the organisers release their nuggets.
+noise, and the probe-guided system below it, also within noise. We rewrote all 119
+test answers the same way; the 42 topics judged for generation can be scored if the
+organisers release their nuggets.
 %% Multipass: addendum A of PREREG_post_results_rerun.md; repair counts:
 %% team_ideas_2026_11_09.py block 2; official rewrite: scripts/run_evidence_official119.sh,
 %% runs/rag/bp_v2_evidence_official119_judged42.jsonl.
@@ -707,8 +760,7 @@ built from its choices, so the official scores cannot check it.
 Topic rag2026-113 asks for an invented television episode. The probe-guided answer
 begins ``There is no evidence in the provided passages confirming the existence of
 \ldots{}'' and scores full support, 1.00, and the primary's answer, which delivers a
-titled premise, scores 0.78. Any refusal is supported by the passage it cites. The
-judge also gave full support to four sentences consisting of a single full stop.
+titled premise, scores 0.78. The judge also gave full support to four sentences consisting of a single full stop.
 Picking per test topic the best-supported of three candidates overrides the pairwise
 judge's choice on 87 topics. On 44 of those it picks the probe-guided answer, from
 the system whose answers hold 4.5 times as many readable defects over the 119 topics
@@ -762,14 +814,14 @@ side by side, batch 2 & 16 of 24 & 0.15 & 11 of 24 & 0.84 \\
 An audit four days before the deadline found 75 defective sentences in runs that had
 passed every validator: leaked facet labels, sentences consisting of a full stop, and
 answers cut mid-word. A judging run pointed at the wrong cache left 624 of the
-probe-guided run's 1,895 citations unjudged without raising an error; on the 40
+probe-guided run's 1,895 citations unjudged without raising an error. On the 40
 topics free of such citations the two systems are level (0.84 and 0.83). An internal
 comparison that put the probe-guided answers ahead 7 to 3 had used 10 of the 22
 development topics, because a sample argument defaulted to 10. Thirty-four sentences
 in runs declared automatic had been written by a person during repairs, and we
 regenerated them and disclosed two remaining per-topic human judgements. The
 citation parser attaches a citation placed after a full stop to the next sentence, so
-the first claim loses its citation and is deleted; we did not keep the raw outputs to
+the first claim loses its citation and is deleted. We did not keep the raw outputs to
 count how often. We also missed the corrected development labels of 17 June, which
 move our development nDCG@10 from 0.54 to 0.50, and the development nuggets of
 12 June, which would have let us measure coverage before submitting.
@@ -784,7 +836,9 @@ move our development nDCG@10 from 0.54 to 0.50, and the development nuggets of
 The track asks for answers in which every sentence cites its evidence, and its
 guidelines announce citation scores. The scores released so far judge only what an
 answer says. We built for citation support and selected systems on it, and the
-released measures do not score it. \TBD{grounding sentence for the discussion}
+released measures do not score it. Every writer we tried owes a quarter to a third of
+its coverage to sentences that the passage it cites does not fully support, and the
+rewrite that raised coverage most also lowered the share of supported sentences.
 Neither measure is enough alone, since citation support is maximised by refusing to
 answer and coverage by asserting. They combine cheaply, because RAGDoll contains both
 a support judge and a nugget assigner: a nugget could count only when a sentence that
@@ -794,11 +848,12 @@ Our development labels were pooled from whole-topic retrieval, and at each desig
 decision we preferred the option that resembled that pool: keyword queries over
 sub-questions, the score mix over the cross-encoder alone, anchor-first fusion over
 reciprocal rank fusion. Over labelled documents only, all three gaps shrink to
-within noise or close to it. Anchor-first fusion was the choice those labels could not
-fault, and we have not shown that it was the better one. \TBD{one sentence from the
-relabelling and the counterfactual} Labels projected from another pool rank the
-systems that resemble the pool; the share of each top ten that carries a label is a
-cheap check of that.
+within noise or close to it. Labelled by one judge, reciprocal rank fusion beats
+anchor-first fusion in the top ten. At the depths we submitted, the facet rankings
+found far more relevant documents than the whole-topic ranking under the same judge.
+Scores computed with labels projected from
+another pool favour systems that resemble that pool, and the share of each top ten
+that carries a label shows how far a comparison can be trusted.
 
 We trusted the support judge over the annotator, and the official coverage scores
 agree more often with the annotator, most clearly on the batch-1 rubric. Comparing
@@ -838,7 +893,9 @@ person before trusting it.
 
 \subsection{Conclusions}
 Facet retrieval produced most of what was scored and reached the field median on
-precision and above it on recall. \TBD{conclusion sentence on the counterfactual}
+precision and above it on recall. Labelled by our own judge at the same depth, the
+scored rankings hold two thirds more relevant documents than the whole-topic
+ranking.
 Our generation runs, built for citation support, sit in the bottom half on the
 measures released so far, and our rewrite shows that coverage alone also credits
 sentences their citations do not back. Our self-built judges were least reliable
