@@ -104,14 +104,22 @@ def dev22_lists():
 
 
 def dev22_text_of():
-    """Text from every local pool cache. The search API was down (HTTP 502) on 2026-11-10, so the
-    40 top-ten documents of the sub-question run that no cache holds stay unlabelled and are
-    reported as such."""
+    """Text from every local pool cache, then from the search API (needs PYSERINI_API_TOKEN) for
+    the few top-ten documents of the sub-question run that no cache holds."""
     from eval.ragdoll_local_judge import build_text_index
     index = {}
     for c in sorted((ROOT / "data/rag/cache/agentic_v2").iterdir()):
         index.update(build_text_index(c))
-    return lambda t, d: index.get(d, "")
+    api = {}
+
+    def text_of(t, d):
+        if d in index:
+            return index[d]
+        if "r" not in api:
+            from systems.rag.retrieve import ApiRetriever
+            api["r"] = ApiRetriever()
+        return api["r"].get_text(d) or ""
+    return text_of
 
 
 def dev22_label():

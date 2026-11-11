@@ -1,6 +1,6 @@
 {
  "dev22_p10_ourlabels": {
-  "unlabelled": 40,
+  "unlabelled": 0,
   "anchor-first": {
    "P@10": 0.8409090909090909,
    "minus_anchor_first": 0.0,
@@ -30,11 +30,11 @@
    "down": 1
   },
   "naive sub-questions": {
-   "P@10": 0.4818181818181818,
-   "minus_anchor_first": -0.3590909090909091,
-   "se": 0.06017977789141641,
-   "up": 1,
-   "down": 19
+   "P@10": 0.5863636363636364,
+   "minus_anchor_first": -0.2545454545454546,
+   "se": 0.06403708095401738,
+   "up": 2,
+   "down": 16
   },
   "plain BM25": {
    "P@10": 0.6363636363636364,

@@ -481,18 +481,17 @@ score mix, and the free sub-questions fall 2 points behind BM25 instead of 14. T
 comparisons between fully labelled lists do not move: reranking the whole topic
 beats plain BM25, and MiniLM beats the larger bge reranker.
 To compare the lists under one judge, our relevance labeller labelled every
-document in these top tens, 688 in all. Forty documents of the sub-question run had
-no text on disk and count as not relevant. Under that judge, reciprocal rank fusion
+document in these top tens, 688 in all. Under that judge, reciprocal rank fusion
 at weight two puts more relevant documents in the top ten than anchor-first
 (precision at ten 0.92 against 0.84, 2.3 standard errors, 10 topics up and 1 down),
 and the cross-encoder alone does slightly better than the score mix (0.90, 1.9
-standard errors). Keyword queries still beat sub-questions (0.48), reranking still
+standard errors). Keyword queries still beat sub-questions (0.59), reranking still
 beats plain BM25 (0.64), and MiniLM still beats the bge reranker (0.71). Our labeller
 is about twice as lenient as the official judge but ranks topics as it does.
 %% eval/analysis/review_checks_2026_11_10.py dev22-label / report (UMBRELA "bing"
 %% prompt, qwen3:32b, the cache of our official labels). Paired against anchor-first:
 %% RRF x2 +0.082 (SE 0.036, 10-1), RRF x8 0.000 (2-2), cross-encoder alone +0.055
-%% (SE 0.029, 6-1), sub-questions -0.359 (SE 0.060), BM25 -0.205 (SE 0.041),
+%% (SE 0.029, 6-1), sub-questions -0.255 (SE 0.064), BM25 -0.205 (SE 0.041),
 %% bge -0.132 (SE 0.039).
 %% eval/analysis/fusion_judged_share.py (rows rebuilt and re-scored; the RRF rows
 %% reproduce EXPERIMENTS.md R5); v2 paired anchor-first minus RRF x2: +0.074 (SE 0.026)
@@ -520,7 +519,7 @@ RRF, whole topic $\times$2 & 0.4493 & 0.4245 & 74\% & 0.5333 & \textbf{0.923} \\
 RRF, whole topic $\times$8 & 0.5273 & 0.4944 & 96\% & 0.5148 & 0.841 \\
 cross-encoder alone & 0.4501 & 0.4021 & 81\% & 0.5003 & 0.895 \\
 \midrule
-naive sub-questions & 0.2794 & 0.2810 & 70\% & 0.4002 & 0.482 \\
+naive sub-questions & 0.2794 & 0.2810 & 70\% & 0.4002 & 0.586 \\
 plain BM25 & 0.4483 & 0.4238 & 100\% & 0.4238 & 0.636 \\
 \midrule
 bge reranker & 0.4832 & 0.4456 & 100\% & 0.4456 & 0.709 \\
